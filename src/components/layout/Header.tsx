@@ -4,26 +4,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
-import { useScrolled } from "@/hooks/useScrolled";
 import { useUIStore } from "@/store/ui";
 import { navItems } from "@/data/navigation";
-import { buildWhatsAppUrl, cn } from "@/lib/utils";
+import { buildWhatsAppUrl } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 
 export default function Header() {
-  const scrolled = useScrolled(20);
   const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useUIStore();
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transform-gpu transition-colors duration-300 ${
-        scrolled || isMobileMenuOpen
-          ? "bg-white shadow-sm border-b border-stone-100 md:bg-white/90 md:backdrop-blur-md"
-          : "bg-transparent"
-      }`}
-    >
+    <header className="fixed top-0 inset-x-0 z-50 bg-white shadow-sm border-b border-stone-100">
       <div className="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="flex items-center" onClick={closeMobileMenu} aria-label="Vidaumed - Inicio">
           <Image
             src="/logo.png"
@@ -32,49 +23,29 @@ export default function Header() {
             height={98}
             priority
             style={{ width: "auto" }}
-            className={cn(
-              "h-12 md:h-14 object-contain",
-              !scrolled && !isMobileMenuOpen && "brightness-0 invert"
-            )}
+            className="h-12 md:h-14 object-contain"
           />
         </Link>
 
-        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-7">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={cn(
-                "text-sm font-medium transition-colors relative group",
-                scrolled
-                  ? "text-stone-600 hover:text-teal-600"
-                  : "text-white hover:text-teal-200"
-              )}
+              className="text-sm font-medium text-stone-600 hover:text-teal-600 transition-colors relative group"
             >
               {item.label}
-              <span
-                className={cn(
-                  "absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300",
-                  scrolled ? "bg-teal-600" : "bg-white"
-                )}
-              />
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-600 group-hover:w-full transition-all duration-300" />
             </Link>
           ))}
         </nav>
 
-        {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
             href={buildWhatsAppUrl("Hola, me gustaría agendar una evaluación gratuita")}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(
-              "flex items-center gap-2 text-sm font-medium transition-colors",
-              scrolled
-                ? "text-stone-500 hover:text-teal-600"
-                : "text-white/90 hover:text-white"
-            )}
+            className="flex items-center gap-2 text-sm font-medium text-stone-500 hover:text-teal-600 transition-colors"
           >
             <Phone size={15} />
             +56 9 618 61768
@@ -84,14 +55,8 @@ export default function Header() {
           </Button>
         </div>
 
-        {/* Mobile toggle */}
         <motion.button
-          className={cn(
-            "md:hidden p-2 rounded-lg transition-colors",
-            scrolled || isMobileMenuOpen
-              ? "text-stone-600 hover:bg-stone-100"
-              : "text-white hover:bg-white/10"
-          )}
+          className="md:hidden p-2 rounded-lg text-stone-600 hover:bg-stone-100"
           onClick={toggleMobileMenu}
           aria-label="Abrir menú"
           whileTap={{ scale: 0.9 }}
@@ -100,7 +65,6 @@ export default function Header() {
         </motion.button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -110,7 +74,7 @@ export default function Header() {
             transition={{ duration: 0.25, ease: "easeInOut" }}
             className="md:hidden overflow-hidden bg-white border-t border-stone-100"
           >
-            <div className="px-4 py-5 flex flex-col gap-1">
+            <div className="max-w-6xl mx-auto px-4 py-5 flex flex-col gap-1">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
