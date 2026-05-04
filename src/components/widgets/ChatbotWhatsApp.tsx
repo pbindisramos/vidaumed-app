@@ -56,7 +56,7 @@ export default function ChatbotWhatsApp() {
         whileTap={{ scale: 0.95 }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.3 }}
+        transition={{ delay: 0.1, duration: 0.2 }}
       >
         <AnimatePresence mode="wait" initial={false}>
           {isOpen ? (

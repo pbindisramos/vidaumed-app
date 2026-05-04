@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle, Star } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { buildWhatsAppUrl } from "@/lib/utils";
-import { fadeInUp, staggerContainer, viewportConfig } from "@/lib/animations";
 
 const stats = [
   { value: "8+", label: "Tratamientos" },
@@ -40,13 +39,8 @@ export default function Hero() {
 
       <div className="relative max-w-6xl mx-auto px-4 py-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Left: copy */}
-        <motion.div
-          className="text-white"
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div variants={fadeInUp} className="flex items-center gap-2 mb-6">
+        <div className="text-white">
+          <div className="flex items-center gap-2 mb-6">
             <div className="flex">
               {[1, 2, 3, 4, 5].map((i) => (
                 <Star key={i} size={14} className="fill-teal-300 text-teal-300" />
@@ -55,29 +49,23 @@ export default function Hero() {
             <span className="text-teal-300 text-sm font-medium">
               Medicina estética · Temuco, Chile
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
-            className="font-heading text-5xl lg:text-[3.75rem] font-bold leading-[1.1] mb-6"
-          >
+          <h1 className="font-heading text-5xl lg:text-[3.75rem] font-bold leading-[1.1] mb-6">
             Tu belleza,{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-teal-100">
               con respaldo
             </span>{" "}
             médico
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
-            className="text-teal-100/80 text-lg leading-relaxed mb-10 max-w-lg"
-          >
+          <p className="text-teal-100/80 text-lg leading-relaxed mb-10 max-w-lg">
             Realizarse un tratamiento estético no es algo meramente superficial.
             En Vidaumed integramos salud, confianza y bienestar en cada procedimiento,
             con resultados naturales y seguimiento personalizado.
-          </motion.p>
+          </p>
 
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Button
               href={buildWhatsAppUrl("Hola, me gustaría agendar una evaluación gratuita")}
               size="lg"
@@ -95,9 +83,9 @@ export default function Hero() {
             >
               Ver tratamientos
             </Button>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp} className="mt-12 flex flex-wrap gap-6">
+          <div className="mt-12 flex flex-wrap gap-6">
             {[
               "Médico certificado",
               "Resultados naturales",
@@ -108,16 +96,11 @@ export default function Hero() {
                 {text}
               </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        {/* Right: stats card */}
-        <motion.div
-          className="hidden lg:block"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-        >
+        {/* Right: stats card — solo desktop, sin animation de entrada para evitar saturar GPU al cargar */}
+        <div className="hidden lg:block">
           <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8">
             <div className="grid grid-cols-3 gap-4 mb-6">
               {stats.map((stat) => (
@@ -151,7 +134,7 @@ export default function Hero() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Wave */}
