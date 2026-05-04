@@ -14,7 +14,7 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-to-br from-teal-950 via-teal-900 to-teal-800 overflow-hidden">
+    <section className="relative min-h-dvh flex items-center bg-gradient-to-br from-teal-950 via-teal-900 to-teal-800 overflow-hidden">
       {/* Background blobs — hidden en mobile para que el scroll no laggee (blur-3xl en loop = GPU killer en iOS/Android) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div

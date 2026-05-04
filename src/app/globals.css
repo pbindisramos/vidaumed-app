@@ -37,10 +37,6 @@
   padding-right: 1rem;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background: #ffffff;
   color: #1c1917;
