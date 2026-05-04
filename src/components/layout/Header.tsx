@@ -16,13 +16,13 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transform-gpu transition-colors duration-300 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
         scrolled || isMobileMenuOpen
           ? "bg-white shadow-sm border-b border-stone-100 md:bg-white/90 md:backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 h-24 md:h-20 pt-3 md:pt-0 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center" onClick={closeMobileMenu} aria-label="Vidaumed - Inicio">
           <Image
