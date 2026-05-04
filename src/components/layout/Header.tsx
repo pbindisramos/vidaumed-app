@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-colors duration-300 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
         scrolled || isMobileMenuOpen
           ? "bg-white shadow-sm border-b border-stone-100 md:bg-white/90 md:backdrop-blur-md"
           : "bg-transparent"
