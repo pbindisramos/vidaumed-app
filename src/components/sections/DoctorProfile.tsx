@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { BadgeCheck, GraduationCap, Microscope } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import Button from "@/components/ui/Button";
-import { slideInLeft, slideInRight, viewportConfig, fadeInUp, staggerContainer, cardVariant } from "@/lib/animations";
+import { slideInLeft, slideInRight, viewportConfig, staggerContainer, cardVariant } from "@/lib/animations";
 import { buildWhatsAppUrl } from "@/lib/utils";
 
 const credentials = [
@@ -26,15 +27,15 @@ export default function DoctorProfile() {
           viewport={viewportConfig}
         >
           <div className="relative">
-            <div className="w-72 h-72 lg:w-[360px] lg:h-[360px] rounded-[2rem] bg-gradient-to-br from-teal-200 via-teal-300 to-teal-500 flex items-center justify-center shadow-2xl overflow-hidden">
-              {/* placeholder avatar */}
-              <div className="flex flex-col items-center gap-3 text-teal-800">
-                <div className="w-24 h-24 rounded-full bg-white/40 flex items-center justify-center text-5xl">
-                  👩‍⚕️
-                </div>
-                <span className="text-sm font-semibold">Dra. Teresa Vidaurre</span>
-              </div>
-              {/* decorative ring */}
+            <div className="w-72 h-72 lg:w-[360px] lg:h-[360px] rounded-[2rem] shadow-2xl overflow-hidden bg-gradient-to-br from-teal-200 via-teal-300 to-teal-500">
+              <Image
+                src="/doctora.jpg"
+                alt="Dra. Teresa Vidaurre"
+                width={360}
+                height={360}
+                className="w-full h-full object-cover"
+                priority
+              />
               <div className="absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/20" />
             </div>
 
