@@ -15,15 +15,15 @@ const stats = [
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center bg-gradient-to-br from-teal-950 via-teal-900 to-teal-800 overflow-hidden">
-      {/* Background blobs */}
+      {/* Background blobs — hidden en mobile para que el scroll no laggee (blur-3xl en loop = GPU killer en iOS/Android) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-teal-600/20 blur-3xl"
+          className="hidden md:block absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-teal-600/20 blur-3xl"
           animate={{ scale: [1, 1.08, 1], opacity: [0.6, 0.9, 0.6] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-teal-400/15 blur-3xl"
+          className="hidden md:block absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-teal-400/15 blur-3xl"
           animate={{ scale: [1, 1.05, 1], opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />

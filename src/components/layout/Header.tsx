@@ -33,7 +33,7 @@ export default function Header() {
             priority
             style={{ width: "auto" }}
             className={cn(
-              "h-12 md:h-14 object-contain transition-[filter] duration-300",
+              "h-12 md:h-14 object-contain",
               !scrolled && !isMobileMenuOpen && "brightness-0 invert"
             )}
           />
