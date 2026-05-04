@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# instagram scratch (cookies, downloaded media, scripts)
+.tmp-instagram/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

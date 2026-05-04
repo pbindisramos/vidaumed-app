@@ -2,11 +2,12 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
 import { useScrolled } from "@/hooks/useScrolled";
 import { useUIStore } from "@/store/ui";
 import { navItems } from "@/data/navigation";
-import { buildWhatsAppUrl } from "@/lib/utils";
+import { buildWhatsAppUrl, cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 
 export default function Header() {
@@ -21,11 +22,21 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-0.5" onClick={closeMobileMenu}>
-          <span className="text-xl font-bold text-teal-600 font-heading">Vida</span>
-          <span className="text-xl font-light text-stone-700 font-heading">umed</span>
+        <Link href="/" className="flex items-center" onClick={closeMobileMenu} aria-label="Vidaumed - Inicio">
+          <Image
+            src="/logo.png"
+            alt="Vidaumed - Medicina Estética"
+            width={300}
+            height={98}
+            priority
+            style={{ width: "auto" }}
+            className={cn(
+              "h-12 md:h-14 object-contain transition-[filter] duration-300",
+              !scrolled && !isMobileMenuOpen && "brightness-0 invert"
+            )}
+          />
         </Link>
 
         {/* Desktop nav */}
@@ -34,10 +45,20 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-stone-600 hover:text-teal-600 transition-colors relative group"
+              className={cn(
+                "text-sm font-medium transition-colors relative group",
+                scrolled
+                  ? "text-stone-600 hover:text-teal-600"
+                  : "text-white hover:text-teal-200"
+              )}
             >
               {item.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-600 group-hover:w-full transition-all duration-300" />
+              <span
+                className={cn(
+                  "absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300",
+                  scrolled ? "bg-teal-600" : "bg-white"
+                )}
+              />
             </Link>
           ))}
         </nav>
@@ -48,7 +69,12 @@ export default function Header() {
             href={buildWhatsAppUrl("Hola, me gustaría agendar una evaluación gratuita")}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm font-medium text-stone-500 hover:text-teal-600 transition-colors"
+            className={cn(
+              "flex items-center gap-2 text-sm font-medium transition-colors",
+              scrolled
+                ? "text-stone-500 hover:text-teal-600"
+                : "text-white/90 hover:text-white"
+            )}
           >
             <Phone size={15} />
             +56 9 618 61768
@@ -60,7 +86,12 @@ export default function Header() {
 
         {/* Mobile toggle */}
         <motion.button
-          className="md:hidden p-2 rounded-lg text-stone-600 hover:bg-stone-100 transition-colors"
+          className={cn(
+            "md:hidden p-2 rounded-lg transition-colors",
+            scrolled || isMobileMenuOpen
+              ? "text-stone-600 hover:bg-stone-100"
+              : "text-white hover:bg-white/10"
+          )}
           onClick={toggleMobileMenu}
           aria-label="Abrir menú"
           whileTap={{ scale: 0.9 }}

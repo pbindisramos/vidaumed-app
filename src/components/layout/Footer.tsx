@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Mail, Phone, Share2 } from "lucide-react";
 import { navItems } from "@/data/navigation";
 import { buildWhatsAppUrl } from "@/lib/utils";
@@ -10,10 +11,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b border-stone-800">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-0.5 mb-4">
-              <span className="text-2xl font-bold text-teal-400 font-heading">Vida</span>
-              <span className="text-2xl font-light text-white font-heading">umed</span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Vidaumed - Medicina Estética"
+              width={300}
+              height={98}
+              style={{ width: "auto" }}
+              className="h-14 object-contain mb-5 brightness-0 invert"
+            />
             <p className="text-sm leading-relaxed text-stone-500 max-w-xs">
               Medicina estética con propósito. Resultados naturales bajo supervisión
               de la Dra. Teresa Vidaurre en Temuco, Chile.
