@@ -31,9 +31,9 @@ export default function DoctorProfile() {
               <Image
                 src="/doctora.jpg"
                 alt="Dra. Teresa Vidaurre"
-                width={360}
-                height={360}
-                className="w-full h-full object-cover"
+                width={1080}
+                height={1367}
+                className="w-full h-full object-cover object-top"
                 priority
               />
               <div className="absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/20" />
